@@ -3,6 +3,10 @@ import { useParams, Link, useNavigate } from "react-router-dom";
 
 import "./App.css"; // Importa il tuo file CSS
 
+import { FaPencil } from "react-icons/fa6";
+import { FaRegSave } from "react-icons/fa";
+import { IoMdArrowRoundBack } from "react-icons/io";
+
 function BookDetail() {
   const { id } = useParams();
   const [book, setBook] = useState(null);
@@ -168,6 +172,7 @@ function BookDetail() {
                     />
                   </td>
                 </tr>
+                {/*}
                 <tr>
                   <td>Letto da:</td>
                   <td>
@@ -179,11 +184,12 @@ function BookDetail() {
                     />
                   </td>
                 </tr>
+                */}
               </tbody>
             </table>
           </form>
-          <button onClick={handleSave}>Salva</button>
-          <button onClick={handleCancel}>Annulla</button>
+          <button style={{marginRight: "5px", fontSize: "12px"}} onClick={handleSave}> <FaRegSave /><strong> Salva</strong></button>
+          <button style={{marginLeft: "5px", fontSize: "12px"}} onClick={handleCancel}> <strong> Annulla</strong></button>
         </>
       ) : (
         <>
@@ -195,11 +201,33 @@ function BookDetail() {
               gap: "10px",
             }}
           >
-            <Link to="/">
-              <button>&lt;-</button>
-            </Link>
+            <button
+              style={{
+                aspectRatio: "1 / 1",
+                height: "100%",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                
+              }}
+            >
+              <Link to="/">
+                <IoMdArrowRoundBack color="black" />
+              </Link>
+            </button>
             <h2>{book.Titolo}</h2>
-            <button onClick={() => setIsEditing(true)}>Modifica</button>
+            <button
+              style={{
+                aspectRatio: "1 / 1",
+                height: "100%",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+              }}
+              onClick={() => setIsEditing(true)}
+            >
+              <FaPencil />
+            </button>
           </div>
           <table className="book-detail-table">
             <tbody>
@@ -233,12 +261,13 @@ function BookDetail() {
                 </td>
                 <td>{book.Posizione}</td>
               </tr>
-              <tr>
+              {/*<tr>
                 <td>
                   <strong>Letto:</strong>
                 </td>
                 <td>{book.Letto}</td>
               </tr>
+              */}
             </tbody>
           </table>
         </>
