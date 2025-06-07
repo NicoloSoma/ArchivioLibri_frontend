@@ -22,7 +22,8 @@ function BookDetail() {
   });
 
   useEffect(() => {
-    fetch("http://localhost:3001/books")
+    //fetch("http://localhost:3001/books")
+    fetch("https://archiviolibri-backend.onrender.com/books")
       .then((response) => response.json())
       .then((data) => {
         const selectedBook = data[parseInt(id, 10)];
@@ -58,7 +59,7 @@ function BookDetail() {
 
     setLoading(true); // Imposta loading a true per mostrare il caricamento
 
-    fetch(`http://localhost:3001/books/${id}`, {
+    fetch(`https://archiviolibri-backend.onrender.com/books/${id}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",

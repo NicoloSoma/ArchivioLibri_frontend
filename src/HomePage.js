@@ -15,7 +15,7 @@ function HomePage() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    fetch("http://localhost:3001/books")
+    fetch("https://archiviolibri-backend.onrender.com/books")
       .then((response) => response.json())
       .then((data) => {
         // Aggiungo un ID univoco per link (index va bene per ora)
