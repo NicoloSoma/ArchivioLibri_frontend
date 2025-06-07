@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
+import { useSearch } from "./context/SearchContext"; // percorso corretto
 
 import "./App.css"; // Importa il tuo file CSS
 
@@ -8,7 +8,7 @@ function HomePage() {
   const [books, setBooks] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  const [searchQuery, setSearchQuery] = useState("");
+  const { searchQuery, setSearchQuery } = useSearch();
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 20;
 
@@ -38,8 +38,8 @@ function HomePage() {
       .normalize("NFD") // decomposizione Unicode
       .replace(/[\u0300-\u036f]/g, ""); // rimuove i segni diacritici (accenti, tilde, etc.)
   };
-  
-  const filteredBooks = books.filter(book => {
+
+  const filteredBooks = books.filter((book) => {
     const query = normalizedText(searchQuery).toLowerCase(); // Normalizza la query
     return (
       normalizedText(book.Autore)?.toLowerCase().includes(query) ||
@@ -61,17 +61,43 @@ function HomePage() {
       {loading ? (
         <p>Caricamento libri in corso...</p>
       ) : (
-        <div>
-          <input
-            type="text"
-            placeholder="Cerca per autore, titolo o serie"
-            value={searchQuery}
-            onChange={(e) => {
-              setSearchQuery(e.target.value);
-              setCurrentPage(1); // Reset a pagina 1 dopo una ricerca
+        <>
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "center", // Centra orizzontalmente
+              marginBottom: "1rem",
             }}
-            style={{ marginBottom: "1rem", padding: "0.5rem", width: "300px" }}
-          />
+          >
+            <input
+              type="text"
+              placeholder="Cerca per autore, titolo o serie"
+              value={searchQuery}
+              onChange={(e) => {
+                setSearchQuery(e.target.value);
+                setCurrentPage(1); // Reset a pagina 1 dopo una ricerca
+              }}
+              style={{
+                padding: "0.5rem",
+                width: "90%", // Larghezza al 90% della pagina
+                maxWidth: "600px", // Limita la larghezza massima
+              }}
+            />
+            <button
+              onClick={() => {
+                setSearchQuery("");
+                setCurrentPage(1);
+              }}
+              style={{
+                marginLeft: "0.5rem",
+                padding: "0.5rem",
+                cursor: "pointer",
+              }}
+            >
+              ✕
+            </button>
+          </div>
+
           <table>
             <thead>
               <tr>
@@ -95,11 +121,18 @@ function HomePage() {
             </tbody>
           </table>
           <div style={{ marginTop: "1rem" }}>
+          <button
+              onClick={() => setCurrentPage(() => 1)}
+              disabled={currentPage === 1}
+            >
+              &lt;&lt;
+            </button>
+
             <button
               onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
               disabled={currentPage === 1}
             >
-              Pagina precedente
+              &lt;
             </button>
 
             <span style={{ margin: "0 1rem" }}>
@@ -112,10 +145,20 @@ function HomePage() {
               }
               disabled={currentPage === totalPages}
             >
-              Pagina successiva
+              &gt;
+            </button>
+
+            <button
+              onClick={() =>
+                setCurrentPage(() => totalPages)
+              }
+              disabled={currentPage === totalPages}
+            >
+              &gt;&gt;
             </button>
           </div>
-        </div>
+          <div style={{ marginBottom: "2rem" }}></div>
+        </>
       )}
     </div>
   );

@@ -100,98 +100,147 @@ function BookDetail() {
       {isEditing ? (
         <>
           <form>
-            <label>
-              Autore:
-              <input
-                type="text"
-                name="Autore"
-                value={formData.Autore}
-                onChange={handleChange}
-              />
-            </label>
-            <label>
-              Titolo:
-              <input
-                type="text"
-                name="Titolo"
-                value={formData.Titolo}
-                onChange={handleChange}
-              />
-            </label>
-            <label>
-              Serie:
-              <input
-                type="text"
-                name="Serie"
-                value={formData.Serie}
-                onChange={handleChange}
-              />
-            </label>
-            <label>
-              Genere:
-              <input
-                type="text"
-                name="Genere"
-                value={formData.Genere}
-                onChange={handleChange}
-              />
-            </label>
-            <label>
-              Tipologia:
-              <input
-                type="text"
-                name="Tipologia"
-                value={formData.Tipologia}
-                onChange={handleChange}
-              />
-            </label>
-            <label>
-              Posizione:
-              <input
-                type="text"
-                name="Posizione"
-                value={formData.Posizione}
-                onChange={handleChange}
-              />
-            </label>
-            <label>
-              Letto da:
-              <input
-                type="text"
-                name="Letto"
-                value={formData.Letto}
-                onChange={handleChange}
-              />
-            </label>
+            <table className="book-detail-table">
+              <tbody>
+                <tr>
+                  <td>Autore:</td>
+                  <td>
+                    <input
+                      type="text"
+                      name="Autore"
+                      value={formData.Autore}
+                      onChange={handleChange}
+                    />
+                  </td>
+                </tr>
+                <tr>
+                  <td>Titolo:</td>
+                  <td>
+                    <input
+                      type="text"
+                      name="Titolo"
+                      value={formData.Titolo}
+                      onChange={handleChange}
+                    />
+                  </td>
+                </tr>
+                <tr>
+                  <td>Serie:</td>
+                  <td>
+                    <input
+                      type="text"
+                      name="Serie"
+                      value={formData.Serie}
+                      onChange={handleChange}
+                    />
+                  </td>
+                </tr>
+                <tr>
+                  <td>Genere:</td>
+                  <td>
+                    <input
+                      type="text"
+                      name="Genere"
+                      value={formData.Genere}
+                      onChange={handleChange}
+                    />
+                  </td>
+                </tr>
+                <tr>
+                  <td>Tipologia:</td>
+                  <td>
+                    <input
+                      type="text"
+                      name="Tipologia"
+                      value={formData.Tipologia}
+                      onChange={handleChange}
+                    />
+                  </td>
+                </tr>
+                <tr>
+                  <td>Posizione:</td>
+                  <td>
+                    <input
+                      type="text"
+                      name="Posizione"
+                      value={formData.Posizione}
+                      onChange={handleChange}
+                    />
+                  </td>
+                </tr>
+                <tr>
+                  <td>Letto da:</td>
+                  <td>
+                    <input
+                      type="text"
+                      name="Letto"
+                      value={formData.Letto}
+                      onChange={handleChange}
+                    />
+                  </td>
+                </tr>
+              </tbody>
+            </table>
           </form>
           <button onClick={handleSave}>Salva</button>
           <button onClick={handleCancel}>Annulla</button>
         </>
       ) : (
         <>
-          <h2>{book.Titolo}</h2>
-          <ul>
-            <li>
-              <strong>Autore:</strong> {book.Autore}
-            </li>
-            <li>
-              <strong>Serie:</strong> {book.Serie}
-            </li>
-            <li>
-              <strong>Genere:</strong> {book.Genere}
-            </li>
-            <li>
-              <strong>Tipologia:</strong> {book.Tipologia}
-            </li>
-            <li>
-              <strong>Posizione:</strong> {book.Posizione}
-            </li>
-            <li>
-              <strong>Letto:</strong> {book.Letto}
-            </li>
-          </ul>
-          <button onClick={() => setIsEditing(true)}>Modifica</button>
-          <Link to="/">← Torna all'archivio</Link>
+          <div
+            style={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              gap: "10px",
+            }}
+          >
+            <Link to="/">
+              <button>&lt;-</button>
+            </Link>
+            <h2>{book.Titolo}</h2>
+            <button onClick={() => setIsEditing(true)}>Modifica</button>
+          </div>
+          <table className="book-detail-table">
+            <tbody>
+              <tr>
+                <td>
+                  <strong>Autore:</strong>
+                </td>
+                <td>{book.Autore}</td>
+              </tr>
+              <tr>
+                <td>
+                  <strong>Serie:</strong>
+                </td>
+                <td>{book.Serie}</td>
+              </tr>
+              <tr>
+                <td>
+                  <strong>Genere:</strong>
+                </td>
+                <td>{book.Genere}</td>
+              </tr>
+              <tr>
+                <td>
+                  <strong>Tipologia:</strong>
+                </td>
+                <td>{book.Tipologia}</td>
+              </tr>
+              <tr>
+                <td>
+                  <strong>Posizione:</strong>
+                </td>
+                <td>{book.Posizione}</td>
+              </tr>
+              <tr>
+                <td>
+                  <strong>Letto:</strong>
+                </td>
+                <td>{book.Letto}</td>
+              </tr>
+            </tbody>
+          </table>
         </>
       )}
     </div>

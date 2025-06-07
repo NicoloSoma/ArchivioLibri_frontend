@@ -89,12 +89,6 @@ tr:hover {
   transition: all 0.3s ease;
 }
 
-.App-header h1 {
-  margin: 0;
-  font-size: 2rem;
-  transition: all 0.3s ease;
-}
-
 /* Quando scrolli, rimpicciolisce */
 .scrolled .App-header h1 {
   font-size: 1.2rem;
@@ -126,8 +120,10 @@ tr:hover {
 }
 
 table {
-  width: 100%;
+  width: 95%;
   border-collapse: collapse;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 thead {
@@ -153,7 +149,6 @@ a {
 a:hover {
   text-decoration: underline;
 }
-
 .book-detail ul {
   list-style: none;
   padding: 0;
@@ -161,4 +156,36 @@ a:hover {
 
 .book-detail li {
   margin-bottom: 8px;
+}
+
+.book-detail table {
+  width: 60%;
+  margin: 20px auto;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background-color: #f9f9f9;
+  max-width: 600px;
+  table-layout: fixed;
+}
+
+.book-detail table th:first-child,
+.book-detail table td:first-child {
+  width: 30%;
+}
+
+.book-detail table th:last-child,
+.book-detail table td:last-child {
+  width: 70%;
+}
+
+@media (max-width: 768px) {
+  .book-detail table {
+    width: 95%;
+  }
+}
+
+.book-detail input {
+  font-size: 12px;
+  width: 90%;
 }
