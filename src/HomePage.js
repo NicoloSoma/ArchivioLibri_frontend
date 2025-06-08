@@ -4,6 +4,8 @@ import { useSearch } from "./context/SearchContext"; // percorso corretto
 
 import "./App.css"; // Importa il tuo file CSS
 
+import { IoAddCircleOutline, IoCloseSharp } from "react-icons/io5";
+
 function HomePage() {
   const [books, setBooks] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -62,6 +64,7 @@ function HomePage() {
         <p>Caricamento libri in corso...</p>
       ) : (
         <>
+          <div style={{ marginBottom: "2rem" }}></div>
           <div
             style={{
               display: "flex",
@@ -90,38 +93,16 @@ function HomePage() {
               }}
               style={{
                 marginLeft: "0.5rem",
-                padding: "0.5rem",
+                padding: "0.2rem",
                 cursor: "pointer",
               }}
             >
-              ✕
+              <IoCloseSharp size={20} color="red" />
             </button>
           </div>
 
-          <table>
-            <thead>
-              <tr>
-                <th>Autore</th>
-                <th>Titolo</th>
-                <th>Serie</th>
-              </tr>
-            </thead>
-            <tbody>
-              {currentBooks.map((book) => (
-                <tr
-                  key={book.id}
-                  onClick={() => navigate(`/book/${book.id}`)}
-                  style={{ cursor: "pointer" }}
-                >
-                  <td>{book.Autore}</td>
-                  <td>{book.Titolo}</td>
-                  <td>{book.Serie}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
           <div style={{ marginTop: "1rem" }}>
-          <button
+            <button
               onClick={() => setCurrentPage(() => 1)}
               disabled={currentPage === 1}
             >
@@ -149,15 +130,41 @@ function HomePage() {
             </button>
 
             <button
-              onClick={() =>
-                setCurrentPage(() => totalPages)
-              }
+              onClick={() => setCurrentPage(() => totalPages)}
               disabled={currentPage === totalPages}
             >
               &gt;&gt;
             </button>
           </div>
+
+          <table>
+            <thead>
+              <tr>
+                <th>Autore</th>
+                <th>Titolo</th>
+                <th>Serie</th>
+              </tr>
+            </thead>
+            <tbody>
+              {currentBooks.map((book) => (
+                <tr
+                  key={book.id}
+                  onClick={() => navigate(`/book/${book.id}`)}
+                  style={{ cursor: "pointer" }}
+                >
+                  <td>{book.Autore}</td>
+                  <td>{book.Titolo}</td>
+                  <td>{book.Serie}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+
           <div style={{ marginBottom: "2rem" }}></div>
+
+          <div className="floating-add-button">
+            <IoAddCircleOutline size={40} onClick={() => {navigate("add-new")}}/>
+          </div>
         </>
       )}
     </div>

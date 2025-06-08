@@ -6,6 +6,7 @@ import "./App.css"; // Importa il tuo file CSS
 import { FaPencil } from "react-icons/fa6";
 import { FaRegSave } from "react-icons/fa";
 import { IoMdArrowRoundBack } from "react-icons/io";
+import { MdDeleteOutline } from "react-icons/md";
 
 function BookDetail() {
   const { id } = useParams();
@@ -24,6 +25,9 @@ function BookDetail() {
     Posizione: "",
     Letto: "",
   });
+
+  const [alertMessage, setAlertMessage] = useState(false);
+  const [isDeleting, setIsDeleting] = useState(false);
 
   useEffect(() => {
     //fetch("http://localhost:3001/books")
@@ -101,6 +105,80 @@ function BookDetail() {
 
   return (
     <div className="book-detail">
+      {alertMessage && (
+        <div className="modal-overlay">
+          <div className="modal-content">
+            {isDeleting ? (
+              <p>Eliminazione in corso...</p>
+            ) : (
+              <>
+                <p>Sei sicuro di voler cancellare questo libro?</p>
+                
+                <div className="compact-view">
+                  {Object.entries(book).map(([key, value]) => (
+                    <div key={key} style={{ display: "flex", justifyContent: "flex-start", marginBottom: "5px" }}>
+                      <span style={{ fontWeight: "bold" }}>{key}: </span>
+                      <span style={{ marginLeft: "1ch" }}>{value}</span>
+                    </div>
+                  ))}
+                </div>
+
+                <div style={{ marginTop: "1rem" }}>
+                  <button
+                    style={{
+                      backgroundColor: "#e74c3c",
+                      color: "#fff",
+                      padding: "6px 12px",
+                      border: "none",
+                      borderRadius: "6px",
+                      marginRight: "10px",
+                      cursor: "pointer",
+                      fontSize: "14px",
+                    }}
+                    onClick={() => {
+                      setIsDeleting(true);
+                      fetch(
+                        `https://archiviolibri-backend.onrender.com/books/${id}`,
+                        {
+                          method: "DELETE",
+                        }
+                      )
+                        .then(() => {
+                          setIsDeleting(false);
+                          setAlertMessage(false);
+                          navigate("/");
+                        })
+                        .catch((error) => {
+                          console.error(
+                            "Errore nella cancellazione del libro:",
+                            error
+                          );
+                        });
+                    }}
+                  >
+                    Conferma
+                  </button>
+                  <button
+                    style={{
+                      backgroundColor: "#bdc3c7",
+                      color: "#333",
+                      padding: "6px 12px",
+                      border: "none",
+                      borderRadius: "6px",
+                      cursor: "pointer",
+                      fontSize: "14px",
+                    }}
+                    onClick={() => setAlertMessage(false)}
+                  >
+                    Annulla
+                  </button>
+                </div>
+              </>
+            )}
+          </div>
+        </div>
+      )}
+
       {isEditing ? (
         <>
           <form>
@@ -188,8 +266,21 @@ function BookDetail() {
               </tbody>
             </table>
           </form>
-          <button style={{marginRight: "5px", fontSize: "12px"}} onClick={handleSave}> <FaRegSave /><strong> Salva</strong></button>
-          <button style={{marginLeft: "5px", fontSize: "12px"}} onClick={handleCancel}> <strong> Annulla</strong></button>
+          <button
+            style={{ marginRight: "5px", fontSize: "12px" }}
+            onClick={handleSave}
+          >
+            {" "}
+            <FaRegSave />
+            <strong> Salva</strong>
+          </button>
+          <button
+            style={{ marginLeft: "5px", fontSize: "12px" }}
+            onClick={handleCancel}
+          >
+            {" "}
+            <strong> Annulla</strong>
+          </button>
         </>
       ) : (
         <>
@@ -208,11 +299,10 @@ function BookDetail() {
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "center",
-                
               }}
             >
               <Link to="/">
-                <IoMdArrowRoundBack color="black" />
+                <IoMdArrowRoundBack color="black" size={20} />
               </Link>
             </button>
             <h2>{book.Titolo}</h2>
@@ -226,7 +316,19 @@ function BookDetail() {
               }}
               onClick={() => setIsEditing(true)}
             >
-              <FaPencil />
+              <FaPencil size={20} />
+            </button>
+            <button
+              onClick={() => setAlertMessage(true)}
+              style={{
+                aspectRatio: "1 / 1",
+                height: "100%",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+              }}
+            >
+              <MdDeleteOutline size={20} />
             </button>
           </div>
           <table className="book-detail-table">

@@ -124,6 +124,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import HomePage from "./HomePage";
 import BookDetail from "./BookDetail";
 import './App.css';
+import NewBookForm from "./NewBookForm";
 
 function App() {
   return (
@@ -135,6 +136,7 @@ function App() {
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/book/:id" element={<BookDetail />} />
+          <Route path="/add-new" element={<NewBookForm />} />
         </Routes>
       </div>
     </Router>
