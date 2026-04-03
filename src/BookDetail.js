@@ -80,7 +80,6 @@ function BookDetail() {
         book: formData
     }),
     })
-      .then((response) => response.json())
       .then((data) => {
         setIsEditing(false); // Disabilita la modalità di modifica
         setRefresh(!refresh); // Inverte il valore di refresh per forzare il ricaricamento

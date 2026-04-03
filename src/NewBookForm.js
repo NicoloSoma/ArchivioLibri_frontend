@@ -41,18 +41,14 @@ function NewBookForm() {
         book: formData
       }),
     })
-      .then((response) => {
-        if (response.ok) {
+      .then(() => {
           setIsCreating(false); // Imposta lo stato di creazione a false
+          alert("RICHIESTA INVIATA! Il tuo libro sarà aggiunto a breve.");
           navigate("/"); // Redirect to home on success
-        } else {
-          return response.json().then((error) => {
-            console.error("Error:", error);
-            alert("Errore durante il salvataggio del libro.");
-          });
         }
-      })
+      )
       .catch((error) => {
+        setIsCreating(false); // Imposta lo stato di creazione a false anche in caso di errore
         console.error("Fetch error:", error);
         alert("Errore di rete durante il salvataggio del libro.");
       });

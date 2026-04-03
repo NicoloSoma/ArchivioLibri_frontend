@@ -17,9 +17,6 @@ function HomePage() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    console.log("URL: ", process.env.REACT_APP_GOOGLE_SCRIPT_URL);
-    console.log("API Key: ", process.env.REACT_APP_API_KEY);
-    fetch(`${process.env.REACT_APP_GOOGLE_SCRIPT_URL}?key=${process.env.REACT_APP_API_KEY}`)
       .then((response) => response.json())
       .then((data) => {
         // Aggiungo un ID univoco per link (index va bene per ora)
