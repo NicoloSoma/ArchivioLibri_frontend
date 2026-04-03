@@ -128,7 +128,7 @@ import NewBookForm from "./NewBookForm";
 
 function App() {
   return (
-    <Router>
+    <Router basename="/ArchivioLibri_frontend">
       <div className="App">
         <header className="App-header">
           <h1>Archivio Libri</h1>
