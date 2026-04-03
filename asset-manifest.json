@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/ArchivioLibri_frontend/static/css/main.08458e85.css",
-    "main.js": "/ArchivioLibri_frontend/static/js/main.ebc9aa92.js",
+    "main.js": "/ArchivioLibri_frontend/static/js/main.c173e176.js",
     "static/js/453.9f9764f0.chunk.js": "/ArchivioLibri_frontend/static/js/453.9f9764f0.chunk.js",
     "index.html": "/ArchivioLibri_frontend/index.html",
     "main.08458e85.css.map": "/ArchivioLibri_frontend/static/css/main.08458e85.css.map",
-    "main.ebc9aa92.js.map": "/ArchivioLibri_frontend/static/js/main.ebc9aa92.js.map",
+    "main.c173e176.js.map": "/ArchivioLibri_frontend/static/js/main.c173e176.js.map",
     "453.9f9764f0.chunk.js.map": "/ArchivioLibri_frontend/static/js/453.9f9764f0.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.08458e85.css",
-    "static/js/main.ebc9aa92.js"
+    "static/js/main.c173e176.js"
   ]
 }
