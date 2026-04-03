@@ -69,8 +69,9 @@ function BookDetail() {
 
     fetch(`${process.env.REACT_APP_GOOGLE_SCRIPT_URL}`, {
       method: "POST",
+      mode: "no-cors",
       headers: {
-        "Content-Type": "application/json",
+        "Content-Type": "text/plain",
       },
       body: JSON.stringify({
         key: process.env.REACT_APP_API_KEY,
@@ -146,8 +147,9 @@ function BookDetail() {
                         `${process.env.REACT_APP_GOOGLE_SCRIPT_URL}`,
                         {
                           method: "POST",
+                          mode: "no-cors",
                           headers: {
-                            "Content-Type": "application/json"
+                            "Content-Type": "text/plain"
                           },
                           body: JSON.stringify({
                             key: process.env.REACT_APP_API_KEY,

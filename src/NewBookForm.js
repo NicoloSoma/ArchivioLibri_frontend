@@ -31,8 +31,9 @@ function NewBookForm() {
     setIsCreating(true); // Imposta lo stato di creazione a true
     fetch(`${process.env.REACT_APP_GOOGLE_SCRIPT_URL}`, {
       method: "POST",
+      mode: "no-cors",
       headers: {
-        "Content-Type": "application/json",
+        "Content-Type": "text/plain",
       },
       body: JSON.stringify({
         key: process.env.REACT_APP_API_KEY,
