@@ -29,12 +29,15 @@ function NewBookForm() {
 
   const handleSave = () => {
     setIsCreating(true); // Imposta lo stato di creazione a true
-    fetch("https://archiviolibri-backend.onrender.com/add-book", {
+    fetch("https://script.google.com/macros/s/AKfycbyQ2dzokO7BYqQiB5pmgzGhRJe98lakN7qbyAAPgBrjwyc9fz2Oz5HVJ_dqzFVo-jmtFA/exec", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(formData),
+      body: JSON.stringify({
+        action: "add-book",
+        book: formData
+      }),
     })
       .then((response) => {
         if (response.ok) {

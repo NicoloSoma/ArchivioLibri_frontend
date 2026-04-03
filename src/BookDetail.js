@@ -31,7 +31,7 @@ function BookDetail() {
 
   useEffect(() => {
     //fetch("http://localhost:3001/books")
-    fetch("https://archiviolibri-backend.onrender.com/books")
+    fetch("https://script.google.com/macros/s/AKfycbyQ2dzokO7BYqQiB5pmgzGhRJe98lakN7qbyAAPgBrjwyc9fz2Oz5HVJ_dqzFVo-jmtFA/exec")
       .then((response) => response.json())
       .then((data) => {
         const selectedBook = data[parseInt(id, 10)];
@@ -67,12 +67,16 @@ function BookDetail() {
 
     setLoading(true); // Imposta loading a true per mostrare il caricamento
 
-    fetch(`https://archiviolibri-backend.onrender.com/books/${id}`, {
-      method: "PUT",
+    fetch("https://script.google.com/macros/s/AKfycbyQ2dzokO7BYqQiB5pmgzGhRJe98lakN7qbyAAPgBrjwyc9fz2Oz5HVJ_dqzFVo-jmtFA/exec", {
+      method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(formData),
+      body: JSON.stringify({
+        action: "update-book",
+        id: id,
+        book: formData
+    }),
     })
       .then((response) => response.json())
       .then((data) => {
@@ -138,9 +142,16 @@ function BookDetail() {
                     onClick={() => {
                       setIsDeleting(true);
                       fetch(
-                        `https://archiviolibri-backend.onrender.com/books/${id}`,
+                        "https://script.google.com/macros/s/AKfycbyQ2dzokO7BYqQiB5pmgzGhRJe98lakN7qbyAAPgBrjwyc9fz2Oz5HVJ_dqzFVo-jmtFA/exec",
                         {
-                          method: "DELETE",
+                          method: "POST",
+                          headers: {
+                            "Content-Type": "application/json"
+                          },
+                          body: JSON.stringify({
+                            action: "delete-book",
+                            id: id
+                          })
                         }
                       )
                         .then(() => {
