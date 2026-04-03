@@ -17,7 +17,7 @@ function HomePage() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    fetch("https://script.google.com/macros/s/AKfycbyQ2dzokO7BYqQiB5pmgzGhRJe98lakN7qbyAAPgBrjwyc9fz2Oz5HVJ_dqzFVo-jmtFA/exec")
+    fetch("https://script.google.com/macros/s/AKfycbxteCWTbD8SvotU6dgthoueXvWC0X_2-OOfyEUydeiCWO43IHK-TsHdu48dEBaFQS0tyg/exec?key=LaPiuBellaFamigliaItalianaMammaMiaPizzeria")
       .then((response) => response.json())
       .then((data) => {
         // Aggiungo un ID univoco per link (index va bene per ora)

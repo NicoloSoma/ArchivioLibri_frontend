@@ -31,7 +31,7 @@ function BookDetail() {
 
   useEffect(() => {
     //fetch("http://localhost:3001/books")
-    fetch("https://script.google.com/macros/s/AKfycbyQ2dzokO7BYqQiB5pmgzGhRJe98lakN7qbyAAPgBrjwyc9fz2Oz5HVJ_dqzFVo-jmtFA/exec")
+    fetch("https://script.google.com/macros/s/AKfycbxteCWTbD8SvotU6dgthoueXvWC0X_2-OOfyEUydeiCWO43IHK-TsHdu48dEBaFQS0tyg/exec?key=LaPiuBellaFamigliaItalianaMammaMiaPizzeria")
       .then((response) => response.json())
       .then((data) => {
         const selectedBook = data[parseInt(id, 10)];
@@ -67,12 +67,13 @@ function BookDetail() {
 
     setLoading(true); // Imposta loading a true per mostrare il caricamento
 
-    fetch("https://script.google.com/macros/s/AKfycbyQ2dzokO7BYqQiB5pmgzGhRJe98lakN7qbyAAPgBrjwyc9fz2Oz5HVJ_dqzFVo-jmtFA/exec", {
+    fetch("https://script.google.com/macros/s/AKfycbxteCWTbD8SvotU6dgthoueXvWC0X_2-OOfyEUydeiCWO43IHK-TsHdu48dEBaFQS0tyg/exec", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
+        key: "LaPiuBellaFamigliaItalianaMammaMiaPizzeria",
         action: "update-book",
         id: id,
         book: formData
@@ -142,13 +143,14 @@ function BookDetail() {
                     onClick={() => {
                       setIsDeleting(true);
                       fetch(
-                        "https://script.google.com/macros/s/AKfycbyQ2dzokO7BYqQiB5pmgzGhRJe98lakN7qbyAAPgBrjwyc9fz2Oz5HVJ_dqzFVo-jmtFA/exec",
+                        "https://script.google.com/macros/s/AKfycbxteCWTbD8SvotU6dgthoueXvWC0X_2-OOfyEUydeiCWO43IHK-TsHdu48dEBaFQS0tyg/exec",
                         {
                           method: "POST",
                           headers: {
                             "Content-Type": "application/json"
                           },
                           body: JSON.stringify({
+                            key: "LaPiuBellaFamigliaItalianaMammaMiaPizzeria",
                             action: "delete-book",
                             id: id
                           })

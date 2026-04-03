@@ -29,12 +29,13 @@ function NewBookForm() {
 
   const handleSave = () => {
     setIsCreating(true); // Imposta lo stato di creazione a true
-    fetch("https://script.google.com/macros/s/AKfycbyQ2dzokO7BYqQiB5pmgzGhRJe98lakN7qbyAAPgBrjwyc9fz2Oz5HVJ_dqzFVo-jmtFA/exec", {
+    fetch("https://script.google.com/macros/s/AKfycbxteCWTbD8SvotU6dgthoueXvWC0X_2-OOfyEUydeiCWO43IHK-TsHdu48dEBaFQS0tyg/exec", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
+        key: "LaPiuBellaFamigliaItalianaMammaMiaPizzeria",
         action: "add-book",
         book: formData
       }),
