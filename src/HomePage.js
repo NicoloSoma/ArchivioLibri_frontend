@@ -17,7 +17,7 @@ function HomePage() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    fetch("https://script.google.com/macros/s/AKfycbxteCWTbD8SvotU6dgthoueXvWC0X_2-OOfyEUydeiCWO43IHK-TsHdu48dEBaFQS0tyg/exec?key=LaPiuBellaFamigliaItalianaMammaMiaPizzeria")
+    fetch(`${process.env.REACT_APP_GOOGLE_SCRIPT_URL}?key=${process.env.REACT_APP_API_KEY}`)
       .then((response) => response.json())
       .then((data) => {
         // Aggiungo un ID univoco per link (index va bene per ora)

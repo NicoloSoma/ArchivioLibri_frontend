@@ -29,13 +29,13 @@ function NewBookForm() {
 
   const handleSave = () => {
     setIsCreating(true); // Imposta lo stato di creazione a true
-    fetch("https://script.google.com/macros/s/AKfycbxteCWTbD8SvotU6dgthoueXvWC0X_2-OOfyEUydeiCWO43IHK-TsHdu48dEBaFQS0tyg/exec", {
+    fetch(`${process.env.REACT_APP_GOOGLE_SCRIPT_URL}`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        key: "LaPiuBellaFamigliaItalianaMammaMiaPizzeria",
+        key: process.env.REACT_APP_API_KEY,
         action: "add-book",
         book: formData
       }),

@@ -31,7 +31,7 @@ function BookDetail() {
 
   useEffect(() => {
     //fetch("http://localhost:3001/books")
-    fetch("https://script.google.com/macros/s/AKfycbxteCWTbD8SvotU6dgthoueXvWC0X_2-OOfyEUydeiCWO43IHK-TsHdu48dEBaFQS0tyg/exec?key=LaPiuBellaFamigliaItalianaMammaMiaPizzeria")
+    fetch(`${process.env.REACT_APP_GOOGLE_SCRIPT_URL}?key=${process.env.REACT_APP_API_KEY}`)
       .then((response) => response.json())
       .then((data) => {
         const selectedBook = data[parseInt(id, 10)];
@@ -67,13 +67,13 @@ function BookDetail() {
 
     setLoading(true); // Imposta loading a true per mostrare il caricamento
 
-    fetch("https://script.google.com/macros/s/AKfycbxteCWTbD8SvotU6dgthoueXvWC0X_2-OOfyEUydeiCWO43IHK-TsHdu48dEBaFQS0tyg/exec", {
+    fetch(`${process.env.REACT_APP_GOOGLE_SCRIPT_URL}`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        key: "LaPiuBellaFamigliaItalianaMammaMiaPizzeria",
+        key: process.env.REACT_APP_API_KEY,
         action: "update-book",
         id: id,
         book: formData
@@ -143,14 +143,14 @@ function BookDetail() {
                     onClick={() => {
                       setIsDeleting(true);
                       fetch(
-                        "https://script.google.com/macros/s/AKfycbxteCWTbD8SvotU6dgthoueXvWC0X_2-OOfyEUydeiCWO43IHK-TsHdu48dEBaFQS0tyg/exec",
+                        `${process.env.REACT_APP_GOOGLE_SCRIPT_URL}`,
                         {
                           method: "POST",
                           headers: {
                             "Content-Type": "application/json"
                           },
                           body: JSON.stringify({
-                            key: "LaPiuBellaFamigliaItalianaMammaMiaPizzeria",
+                            key: process.env.REACT_APP_API_KEY,
                             action: "delete-book",
                             id: id
                           })
